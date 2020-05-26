@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import "./Todo.css";
 
 class Todo extends Component {
   constructor(props) {
@@ -37,7 +38,7 @@ class Todo extends Component {
     let result;
     if (this.state.isEditing) {
       result = (
-        <div>
+        <div classNames="form">
           <form className="Todo-edit-form" onSubmit={this.handleUpdate}>
             <input
               type="text"
@@ -51,7 +52,7 @@ class Todo extends Component {
       );
     } else {
       result = (
-        <div>
+        <div classNames="task-text">
           <li className="Todo-task" onClick={this.handleToggle}>
             {this.props.task}
           </li>
@@ -59,14 +60,18 @@ class Todo extends Component {
       );
     }
     return (
-      <div>
+      <div className={this.props.completed ? "Todo completed" : "Todo"}>
         {result}
-
-        <button onClick={this.toggleForm}>Edit</button>
-        <button onClick={this.handleRemove}>X</button>
+        <div className="Todo-buttons">
+          <button onClick={this.toggleForm}>
+            <i class="fas fa-pen" />
+          </button>
+          <button onClick={this.handleRemove}>
+            <i class="fas fa-trash" />
+          </button>
+        </div>
       </div>
     );
   }
 }
-
 export default Todo;
